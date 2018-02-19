@@ -1,0 +1,8 @@
+{
+  "urlMappings": [
+    {
+      "path": "/mygreatui/*",
+      "target": "http://localhost:23550"
+    }
+  ]
+}

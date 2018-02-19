@@ -1,0 +1,32 @@
+{
+  "debug": true,
+  "httpPort":3002,
+  "httpsPort":3243,
+  "certLocation": "./test/",
+  "certs": {
+    "key": "certs/server/privkey.pem",
+    "cert": "certs/server/cert.pem",
+    "ca": [
+      "certs/ca/my-root-ca.crt.pem"
+    ]
+  },
+  "logging": {
+    "level": "debug",
+    "colorize": true,
+    "filename": "logs/server.log"
+  },
+  "urlMappings": [
+    {
+      "path": "/",
+      "target": "http://localhost:13550"
+    }
+  ],
+  "headers": {
+    "mockServer": {
+      "X-Auth-Token": "b4d011d1-d48c-40e2-beeb-e4442ff21853",
+      "X-UserInfo": "UserId=paford;org=ibm",
+      "X-Forward-IP": "aaabbbccc"
+    }
+  }
+}
+

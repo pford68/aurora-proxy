@@ -1,0 +1,21 @@
+{
+  "httpPort":3000,
+  "httpsPort":3443,
+  "certs": {
+    "key": "./resources/certs/signed/server.enc.key",
+    "cert": "./resources/certs/signed/server.pem",
+    "ca": [
+      "./resources/certs/signed/caintermediatecert.pem",
+      "./resources/certs/signed/carootcert.pem"
+    ]
+  },
+  "logging": {
+    "level": "error",
+    "colorize": true,
+    "filename": "logs/server.log"
+  },
+  "headers": {},
+  "urlMappings": [],
+  "rewrites": {},
+  "plugins": []
+}

@@ -1,0 +1,31 @@
+# IntelliJ
+.idea
+*.iml
+
+# Artifacts
+**/build
+**/dist
+
+# NPM
+**/node_modules/
+
+# Mac OS X
+**/.DS_Store
+
+# Local
+**/config/local.json
+**/config/production.json
+
+# Logs
+logs
+**/*.log
+emra-bld/log/
+csar.log*
+log*.xml
+
+# Other
+java.version
+coverage
+.nyc_output
+reports
+

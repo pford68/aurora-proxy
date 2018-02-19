@@ -1,0 +1,6 @@
+.jshintrc
+.travis.yml
+Gulpfile.js
+tasks
+test
+deploy.sh

@@ -1,0 +1,42 @@
+{
+  "debug": true,
+  "httpPort":3002,
+  "httpsPort":-1,
+  "certLocation": "./test",
+  "certs": {
+    "key": "/certs/server/privkey.pem",
+    "cert": "/certs/server/cert.pem",
+    "ca": [
+      "/certs/ca/my-root-ca.crt.pem"
+    ]
+  },
+  "rewrites":{
+    "/*.html?action=logout": "/logout"
+  },
+  "urlMappings": [
+    {
+      "path": "/home",
+      "target": "http://localhost:13550"
+    },
+    {
+      "path": "/logout",
+      "target": "http://localhost:13550"
+    },
+    {
+      "path": "/batchID*..patientID*",
+      "target": "http://localhost:13550",
+      "rewrite":  {
+        "from": "/batch/:batchId/patient/:patientId",
+        "to": "/batchID:batchId..patientID:patientId"
+      }
+    },
+    {
+      "path": "/mygreatui/*",
+      "target": "http://localhost:13550"
+    }
+  ],
+  "headers": {
+    "X-Watson-UserInfo": "UserId=paford;org=ibm"
+  }
+}
+
