@@ -1,0 +1,23 @@
+{
+  "check-coverage": true,
+  "per-file": true,
+  "lines": 98,
+  "statements": 98,
+  "functions": 98,
+  "branches": 98,
+  "include": [
+    "lib/**/*.js",
+    "server.js"
+  ],
+  "exclude": [
+    "lib/logging/**"
+  ],
+  "reporter": [
+    "text",
+    "text-summary",
+    "html"
+  ],
+  "cache": true,
+  "all": true,
+  "report-dir": "./reports"
+}

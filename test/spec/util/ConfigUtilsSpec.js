@@ -61,7 +61,7 @@ describe('ConfigUtils', function () {
 
         it('should default to the CWD to find the certs if certLocation is not set', () => {
             let certs, file;
-            let readFileSync = sinon.stub(fs, 'readFileSync', function(f, encoding){
+            let readFileSync = sinon.stub(fs, 'readFileSync').callsFake(function(f, encoding){
                 if (f.includes('cert.pem')){
                     file = f;
                 }

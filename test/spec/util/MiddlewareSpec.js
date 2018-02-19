@@ -16,13 +16,13 @@ describe('Middleware', () => {
 
     it ('should add unlimited beforeAdvice with prepend()', () => {
         let mw = new Middleware({ id: 'first'});
-        mw.prepend('classpath:basic-auth', 'classpath:mock-datapower', '../logging/EmraLogger');
+        mw.prepend('classpath:basic-auth', 'cors', '../logging/AuroraLogger');
         expect(mw.items.length).to.equal(4);
     });
 
     it ('should add unlimited afterAdvice with append()', () => {
         let mw = new Middleware({ id: 'first'});
-        mw.append('classpath:basic-auth', 'classpath:mock-datapower', '../logging/EmraLogger');
+        mw.append('classpath:basic-auth', 'cors', '../logging/AuroraLogger');
         expect(mw.items.length).to.equal(4);
     });
 
@@ -30,7 +30,7 @@ describe('Middleware', () => {
         let mw = new Middleware({ id: 'first'});
         mw.addAdvice({
             before: ['classpath:basic-auth'],
-            after: ['classpath:mock-datapower', '../logging/EmraLogger']
+            after: ['cors', '../logging/AuroraLogger']
         });
         expect(mw.items.length).to.equal(4);
     });
@@ -38,7 +38,7 @@ describe('Middleware', () => {
     describe('require', () => {
         it('should take multiple arguments', () => {
             let mw = new Middleware({id: 'first'});
-            let items = mw.require('classpath:basic-auth', 'classpath:mock-datapower');
+            let items = mw.require('classpath:basic-auth', 'cors');
             expect(items.length).to.equal(2);
         });
 
