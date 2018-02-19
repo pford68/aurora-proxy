@@ -1,7 +1,7 @@
 {
   "httpPort":3000,
   "httpsPort":3443,
-  "certs": {
+  "_certs": {
     "key": "./resources/certs/signed/server.enc.key",
     "cert": "./resources/certs/signed/server.pem",
     "ca": [
