@@ -9,25 +9,24 @@ const pkg = require('../package.json');
 const version = pkg.version;
 const files = [
     'package.json',
-    'server.js',
-    'deploy.sh',
-    'proxyrc',
-    'proxy/**/*'
+    'server.js'
 ];
 
-gulp.task('dist:clean', () => {
-    del.sync('dist', function(){
+gulp.task('dist:clean', (done) => {
+    del.sync('dist', () => {
         console.log("Deleted " + gDestDir + ".");
     });
+
+    done();
 });
 
-gulp.task('prepackage', ['dist:clean'], () => {
+gulp.task('prepackage', () => {
     return gulp.src(files, { base: "." })
         .pipe(gulp.dest(`dist/aurora-proxy-${version}`));
 });
 
 
-gulp.task('dist', ['prepackage'], () => {
+gulp.task('dist', gulp.series('dist:clean', 'prepackage'), () => {
     console.log("Creating " + gDestDir + "...");
     return gulp.src('dist/aurora-proxy-*/**/*', { base: "dist" })
         .pipe(zip(`aurora-proxy-${version}.zip`))

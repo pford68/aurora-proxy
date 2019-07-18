@@ -5,6 +5,7 @@
 # Artifacts
 **/build
 **/dist
+**/docs
 
 # NPM
 **/node_modules/
