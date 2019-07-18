@@ -1,0 +1,102 @@
+{
+  "debug": true,
+  "_root": "/Users/paford/Documents/webapps/",
+  "httpPort": -1,
+  "httpsPort": 3443,
+  "certLocation": "/Users/paford/local",
+  "certs": {
+    "key": "/certs/signed/server.enc.key",
+    "cert": "/certs/signed/server.pem",
+    "ca": [
+      "/certs/signed/caintermediatecert.pem",
+      "/certs/signed/carootcert.pem"
+    ]
+  },
+  "_sslOptions": {
+    "minVersion": "TLSv1.2"
+  },
+  "logging": {
+    "level": "debug",
+    "colorize": true,
+    "filename": "logs/server.log"
+  },
+  "urlMappings": [
+    {
+      "path": "/emra-support/*",
+      "target": "https://emra.watson.ibm.com:3443/"
+    },
+    {
+      "path": "/medius-ui/*",
+      "_target": "https://localhost:12443/",
+      "target": "https://localhost:9000/",
+      "before": [
+        "emra-proxy-middleware/jwt"
+      ]
+    },
+    {
+      "path": "/watson/emra-dev/medius-ui/*",
+      "target": "https://localhost:14443/",
+      "before": [
+        "emra-proxy-middleware/basic-auth",
+        "emra-proxy-middleware/mock-datapower"
+      ]
+    },
+    {
+      "path": "/watson/emra-dev/logout",
+      "target": "http://emra.watson.ibm.com:3000/"
+    },
+    {
+      "path": "*/gt-annotator/*",
+      "target": "https://localhost:14443/",
+      "before": [
+        "emra-proxy-middleware/basic-auth",
+        "emra-proxy-middleware/mock-datapower"
+      ]
+    },
+    {
+      "path": "*/assessment/*",
+      "target": "https://localhost:14443/",
+      "before": [
+        "emra-proxy-middleware/basic-auth",
+        "emra-proxy-middleware/mock-datapower"
+      ]
+    },
+    {
+      "path": "/config/*",
+      "target": "https://localhost:14443/"
+    },
+    {
+      "path": "/services/emra/*",
+      "target": "https://emra.watson.ibm.com:3443/"
+    },
+    {
+      "path": "/medius-ui-*/*",
+      "target": "https://localhost:9443",
+      "rewrite": {
+        "from": "/emra-ui/:version/",
+        "to": "/medius-ui-:version/"
+      }
+    },
+    {
+      "path": "/jenkins/*",
+      "target": "http://emra.watson.ibm.com:3000/"
+    },
+    {
+      "path": "/bluepages/*",
+      "target": "https://localhost:12443/"
+    }
+  ],
+  "mock-datapower": {
+    "headers": {
+      "X-Watson-UserInfo": "UserId=${username}@us.ibm.com;org=ibm"
+    }
+  },
+  "jwt": {
+    "header": "x-access-token",
+    "service": "https://localhost:3443/bluepages",
+    "form": "login.html",
+    "duration": 12,
+    "key": "/Users/paford/local/config/jwt.txt"
+  }
+}
+
