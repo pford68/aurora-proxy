@@ -14,8 +14,7 @@
 **/.DS_Store
 
 # Local
-**/config/local.json
-**/config/production.json
+**/local.json
 
 # Logs
 logs
